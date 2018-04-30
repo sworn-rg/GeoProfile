@@ -35,10 +35,19 @@ class Location:
             self.datetimes.append(self.activity_cluster[i].end_datetime)
             self.latitudes.append(self.activity_cluster[i].end_latitude)
             self.longitudes.append(self.activity_cluster[i].end_longitude)
+            if self.activity_cluster[i].end_course > 0 :
+                self.courses.append(self.activity_cluster[i].end_course)
+            
 
     def location_summary(self):
         self.first_activity = min(self.datetimes).strftime("%Y-%m-%d")
         self.last_activity = max(self.datetimes).strftime("%Y-%m-%d")
+        self.med_longitude = st.median(self.longitudes)
+        self.med_latitude = st.median(self.latitudes)
+        self.med_course = st.median(self.courses)
+    
+    def street_map_dictionary(self):
+        self.street_map = {}
     
     def location_time_summary(self):
         self.n_activities = len(self.activity_cluster)

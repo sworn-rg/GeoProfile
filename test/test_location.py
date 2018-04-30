@@ -30,6 +30,7 @@ for i in event_ids:
 
 my_location = Location(activity_cluster)
 
+
 class TestUM(unittest.TestCase):
     
     
@@ -42,6 +43,9 @@ class TestUM(unittest.TestCase):
     def test_summary_end(self):
         self.assertEqual(my_location.first_activity, '2016-09-12', 'Start Time')
         self.assertEqual(my_location.last_activity, '2017-07-22', 'End Time')
+        self.assertAlmostEqual(my_location.med_longitude, -1.160843, 5)
+        self.assertAlmostEqual(my_location.med_latitude, 51.01245, 5)
+        self.assertAlmostEqual(my_location.med_course, 180.3516, 4)
 
 if __name__ == '__main__':
     unittest.main()
