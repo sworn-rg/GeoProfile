@@ -46,8 +46,13 @@ class Location:
         self.med_latitude = st.median(self.latitudes)
         self.med_course = st.median(self.courses)
     
-    def street_map_dictionary(self):
-        self.street_map = {}
+    def street_map_dictionary(self, course = False, pitch = False):
+        heading = self.med_course if (not course) else course
+        pitch = 10 if (not pitch) else pitch 
+        coords = str(self.med_latitude) + ',' + str(self.med_longitude)
+        street_map = {'location' : coords, 'heading'  : heading, 'pitch' : pitch}
+        
+        return street_map
     
     def location_time_summary(self):
         self.n_activities = len(self.activity_cluster)

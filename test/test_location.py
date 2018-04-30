@@ -46,6 +46,16 @@ class TestUM(unittest.TestCase):
         self.assertAlmostEqual(my_location.med_longitude, -1.160843, 5)
         self.assertAlmostEqual(my_location.med_latitude, 51.01245, 5)
         self.assertAlmostEqual(my_location.med_course, 180.3516, 4)
-
+        
+    def test_street_map(self):
+        image_params = my_location.street_map_dictionary()
+        self.assertEqual(image_params['location'], '51.0124514356,-1.16084307656', 'Image: coords')
+        self.assertAlmostEqual(image_params['heading'], 180.3516, 4)
+        self.assertEqual(image_params['pitch'], 10, 'Image: pitch')
+        
+        image_params = my_location.street_map_dictionary(pitch = 123.456)
+        self.assertAlmostEqual(image_params['pitch'], 123.456, 3)
+        
+        
 if __name__ == '__main__':
     unittest.main()
