@@ -35,13 +35,15 @@ class Activity:
     def activity_location_features(self):
         self.start_longitude = self.df['longitude'].iloc[0]
         self.start_latitude = self.df['latitude'].iloc[0]
+        self.start_course = self.df['course'].iloc[0]
         self.end_longitude = self.df['longitude'].iloc[-1]
         self.end_latitude = self.df['latitude'].iloc[-1]
+        self.end_course = self.df['course'].iloc[-1]
         self.distance_travelled_ms = round(vincenty( (self.start_longitude, self.start_latitude) , (self.end_longitude, self.end_latitude)).meters, 0)
     
     def activity_classification(self, max_distance_ms = 100, number_of_points = 2):
         self.activity = 'Travel'
-        if((self.n_obs == number_of_points) & (self.distance_travelled_ms < max_distance_ms)):
+        if((self.n_obs == number_of_points)):
             self.activity = 'Location'
     
     def activity_string(self):

@@ -51,11 +51,15 @@ class TestUM(unittest.TestCase):
         start_latitude = 45.04940030471891
         end_longitude = 5.68948678213787
         end_latitude = 48.2277418554901
+        start_course = -1
+        end_course = 319.5703125
         distance_travelled_ms = round(vincenty((start_longitude, start_latitude), (end_longitude, end_latitude)).meters, 0)
         self.assertAlmostEqual(travel.start_longitude, start_longitude)
         self.assertAlmostEqual(travel.start_latitude, start_latitude)
         self.assertAlmostEqual(travel.end_longitude, end_longitude)
-        self.assertAlmostEqual(travel.end_latitude, end_latitude, places = 7)
+        self.assertAlmostEqual(travel.end_latitude, end_latitude)
+        self.assertAlmostEqual(travel.start_course, start_course)
+        self.assertAlmostEqual(travel.end_course, end_course)
         self.assertEqual(travel.distance_travelled_ms, distance_travelled_ms)
     
     
