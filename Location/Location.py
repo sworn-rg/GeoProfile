@@ -13,7 +13,7 @@ class Location:
     Attributes:
     
     """
-
+    
     def __init__(self, activity_cluster, from_json = False):
         """ Basic checks and conditions for class constructors """
         self.activity_cluster = activity_cluster
@@ -37,14 +37,20 @@ class Location:
             self.longitudes.append(self.activity_cluster[i].end_longitude)
             if self.activity_cluster[i].end_course > 0 :
                 self.courses.append(self.activity_cluster[i].end_course)
-            
-
+        
     def location_summary(self):
         self.first_activity = min(self.datetimes).strftime("%Y-%m-%d")
         self.last_activity = max(self.datetimes).strftime("%Y-%m-%d")
         self.med_longitude = st.median(self.longitudes)
         self.med_latitude = st.median(self.latitudes)
         self.med_course = st.median(self.courses)
+    
+    
+    def location_time_summary(self):
+        self.n_activities = len(self.activity_cluster)
+    
+    def location_activity_summary(self):
+        return 'blahhh'
     
     def street_map_dictionary(self, course = False, pitch = False):
         heading = self.med_course if (not course) else course
@@ -53,12 +59,6 @@ class Location:
         street_map = {'location' : coords, 'heading'  : heading, 'pitch' : pitch}
         
         return street_map
-    
-    def location_time_summary(self):
-        self.n_activities = len(self.activity_cluster)
-    
-    def location_activity_summary(self):
-        return 'blahhh'
     
     def from_json(self):
         return 'blahh'
