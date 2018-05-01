@@ -52,6 +52,9 @@ class Location:
     def location_activity_summary(self):
         return 'blahhh'
     
+    def location_coord_features(self, longitude, latitude):
+        return 'blahhh'
+    
     def street_map_dictionary(self, course = False, pitch = False):
         heading = self.med_course if (not course) else course
         pitch = 10 if (not pitch) else pitch 
