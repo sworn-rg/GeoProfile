@@ -48,23 +48,19 @@ class Location:
         self.med_latitude = st.median(self.latitudes)
         self.med_course = st.median(self.courses)
     
-    
-    def location_time_summary(self, freq = 'T'):
+    def location_time_summary(self, freq = 'T', str_format = '%h'):
         time_profile = np.array([], dtype = 'str')
         for i in range(self.n_activities):
             start = self.activity_cluster[i].start_datetime
             end = self.activity_cluster[i].end_datetime
             activity_time_range = pd.date_range(start = start, end = end, freq = freq)
-            hh_mm = activity_time_range.to_datetime().strftime("%H")
+            hh_mm = activity_time_range.to_datetime().strftime(str_format)
             time_profile = np.concatenate([time_profile, hh_mm])
         
         keys, values = np.unique(time_profile, return_counts=True)
         self.time_profile = dict(zip(keys, values))
     
     def location_activity_summary(self):
-        return 'blahhh'
-    
-    def location_coord_features(self, longitude, latitude):
         return 'blahhh'
     
     def street_map_dictionary(self, course = False, pitch = False):
@@ -74,6 +70,10 @@ class Location:
         street_map = {'location' : coords, 'heading'  : heading, 'pitch' : pitch}
         
         return street_map
+    
+    def location_coord_features(self, longitude, latitude):
+        return 'blahhh'
+    
     
     def from_json(self):
         return 'blahh'
