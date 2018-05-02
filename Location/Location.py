@@ -48,7 +48,7 @@ class Location:
         self.med_latitude = st.median(self.latitudes)
         self.med_course = st.median(self.courses)
     
-    def location_time_summary(self, freq = 'T', str_format = '%h'):
+    def location_time_summary(self, freq = 'T', str_format = '%H'):
         time_profile = np.array([], dtype = 'str')
         for i in range(self.n_activities):
             start = self.activity_cluster[i].start_datetime
