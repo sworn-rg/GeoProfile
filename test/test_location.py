@@ -40,6 +40,10 @@ class TestUM(unittest.TestCase):
     def test_n_activities(self):
         self.assertEqual(my_location.n_activities, 31, 'Location: Number of Elements')
     
+    def test_time_profile(self):
+        time_profile = {'00': 64, '01': 22, '06': 3, '07': 46, '10': 27, '11': 60, '12': 66, '13': 38, '14': 79, '15': 80, '16': 21, '17': 79, '18': 208, '19': 164, '20': 190, '21': 229, '22': 164, '23': 74}
+        self.assertEqual(my_location.time_profile, time_profile, 'time_profile')
+    
     def test_summary_end(self):
         self.assertEqual(my_location.first_activity, '2016-09-12', 'Start Time')
         self.assertEqual(my_location.last_activity, '2017-07-22', 'End Time')

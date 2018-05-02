@@ -7,6 +7,8 @@ Created on Mon Mar  5 10:26:32 2018
 from datetime import datetime
 from geopy.distance import vincenty
 import statistics as st
+import numpy as np
+import pandas as pd
 
 class Location:
     """An Activity: Base class for geo activity data event
@@ -25,6 +27,7 @@ class Location:
         
         self.abstract_activities()
         self.location_summary()
+        self.location_time_summary()
     
     def abstract_activities(self):
         self.datetimes = []
@@ -46,8 +49,17 @@ class Location:
         self.med_course = st.median(self.courses)
     
     
-    def location_time_summary(self):
-        self.n_activities = len(self.activity_cluster)
+    def location_time_summary(self, freq = 'T'):
+        time_profile = np.array([], dtype = 'str')
+        for i in range(self.n_activities):
+            start = self.activity_cluster[i].start_datetime
+            end = self.activity_cluster[i].end_datetime
+            activity_time_range = pd.date_range(start = start, end = end, freq = freq)
+            hh_mm = activity_time_range.to_datetime().strftime("%H")
+            time_profile = np.concatenate([time_profile, hh_mm])
+        
+        keys, values = np.unique(time_profile, return_counts=True)
+        self.time_profile = dict(zip(keys, values))
     
     def location_activity_summary(self):
         return 'blahhh'
