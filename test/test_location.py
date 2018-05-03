@@ -17,7 +17,7 @@ sys.path.append("..")
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 ''' location events '''
-filename = "{0}\data\{1}".format(dir_path, 'location_activity_test.csv')
+filename = "{0}\data\{1}".format(dir_path, 'location_test.csv')
 df = pd.read_csv(filename)
 travel = Activity(df)
 
