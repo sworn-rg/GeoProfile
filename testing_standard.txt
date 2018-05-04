@@ -1,1 +1,3 @@
 python -m unittest discover -s test
+coverage run -m unittest discover -s tests/ --source=.
+coverage report -m
