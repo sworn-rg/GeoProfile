@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Apr 19 10:15:49 2018
-
 @author: roger.gill
 """
 import unittest
@@ -10,7 +9,6 @@ import pandas as pd
 
 from Activity.Activity import Activity
 from Location.Location import Location
-
 
 ''' add the local directory to path and read test data '''
 sys.path.append("..")
