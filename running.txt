@@ -1,0 +1,2 @@
+run from parent directory to GeoProfile i.e. ..
+python -m GeoProfile.scripts.daily_run

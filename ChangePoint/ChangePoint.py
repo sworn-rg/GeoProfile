@@ -11,8 +11,6 @@ from datetime import datetime
 import statistics as st
 import pandas as pd
 
-config = {'time_delta_secs' : 360}
-
 class ChangePoint:
     """A Profile: Base class for geo profile
     Attributes:

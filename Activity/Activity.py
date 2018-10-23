@@ -15,8 +15,11 @@ class Activity:
 
     def __init__(self, raw_data_frame):
         """ Basic checks and conditions for class constructors """
+        self.active = True
         if len(raw_data_frame) < 2:
-            raise Exception('An Activity requires at least 2 data points')
+            #raise Exception('An Activity requires at least 2 data points')
+            self.active = False
+            return None
         
         self.df = raw_data_frame
         self.activity_summary()
@@ -28,8 +31,8 @@ class Activity:
         self.n_obs = len(self.df)
      
     def activity_time_features(self):
-        self.start_datetime = datetime.strptime(min(self.df.timestamp), '%Y-%m-%d %H:%M:%S.%f')
-        self.end_datetime = datetime.strptime(max(self.df.timestamp), '%Y-%m-%d %H:%M:%S.%f')
+        self.start_datetime = datetime.strptime(min(self.df.timestamp), '%Y-%m-%dT%H:%M:%S.%fZ')
+        self.end_datetime = datetime.strptime(max(self.df.timestamp), '%Y-%m-%dT%H:%M:%S.%fZ')
         self.duration_secs = (self.end_datetime - self.start_datetime).seconds
 
     def activity_location_features(self):
